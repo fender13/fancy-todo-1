@@ -1,0 +1,158 @@
+.dashboard {
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-right: 5%;
+  min-height: 100vh;
+}
+
+.row.project-cards {
+  margin-top: 1%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.dashboard-options {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e74c3c;
+}
+
+.dashboard-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.dashboard-select {
+  width: 25%;
+}
+
+.addnew {
+  margin-top: 1%;
+  text-align: right;
+}
+
+.todo-list {
+  margin-top: 1%;
+}
+
+/* ======================================== */
+
+.limiter {
+  width: 100%;
+  position:relative;
+  margin-top: 2%;
+}
+
+.container-table100 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.wrap-table100 {
+  width: 1300px;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+table {
+  width: 100%;
+  background-color: #fff;
+}
+
+th, td {
+  font-weight: unset;
+  padding-right: 10px;
+}
+
+.column100 {
+  width: 130px;
+  padding-left: 25px;
+}
+
+.column100.column1 {
+  width: 350px;
+  padding-left: 42px;
+}
+
+.row100.head th {
+  padding-top: 24px;
+  padding-bottom: 20px;
+}
+
+.row100 td {
+  padding-top: 18px;
+  padding-bottom: 14px;
+}
+
+.table100.ver2 td {
+  /* font-family: Montserrat-Regular; */
+  font-size: 14px;
+  color: #808080;
+  line-height: 1.4;
+}
+
+.table100.ver2 th {
+  /* font-family: Montserrat-Medium; */
+  font-size: 12px;
+  color: #fff;
+  line-height: 1.4;
+  text-transform: uppercase;
+
+  background-color: #333333;
+}
+
+/* .table100.ver2 .row100:hover td {
+  background-color: #e74c3c;
+  color: #fff;
+} */
+
+/* .table100.ver2 .hov-column-ver2 {
+  background-color: #e74c3c;
+  color: #fff;
+} */
+
+.table100.ver2 .hov-column-head-ver2 {
+  background-color: #484848 !important;
+}
+
+/* .table100.ver2 .row100 td:hover {
+  background-color: #f0938a;
+  color: #fff;
+} */
+
+.list-todo-empty {
+  margin-top: 5%;
+  text-align: center;
+}
+
+.list-todo-empty img {
+  margin-top: 4%;
+  width: 10%;
+}
+
+.empty-project {
+  margin-top: 5%;
+  text-align: center;
+}
+
+.empty-project img {
+  margin-top: 4%;
+  width: 10%;
+}
+
+.card-details a {
+  font-size: 14px;
+}
+
+.member-username {
+  margin-left: 15%;
+}

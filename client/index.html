@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fancy-ToDo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- google signin -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="890955293566-equ0ps2dhpeu04tds1utmlbccof1ppe6.apps.googleusercontent.com">
+    
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- custom css -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheet/home.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheet/main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheet/navbar.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheet/memberArea.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheet/dashboard.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheet/utilities.css">
+
+    <!-- jquery -->
+    <script
+        src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+    <div class="app">
+        <!-- ========================================================================== -->
+        <div class="main-menu">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand page-connect" data-page="home" href="#">Fancy-ToDo</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item page-connect" data-page="home">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item onDashboard page-connect" data-page="dashboard">
+                            <a id="dashboard" class="nav-link dashboard-button" href="#">Dashboard</a>
+                        </li>
+                        <li class="nav-item onLogin page-connect" data-page="member-area">
+                            <a id="sign-in" class="nav-link sign-in-button" href="#">Sign in</a>
+                        </li>
+                        <li class="nav-item page-connect">
+                            <a id="logout" class="nav-link logout-button" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="page home">
+            <div class="main-title">
+                <div>
+                    <h1>Welcome to My Fancy-ToDo</h1>
+                </div>
+                <div>
+                    <p>Whatever you decide ToDo make sure do it with My Fancy-ToDo</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary page-connect sign-in-button" id="sign-in" data-page="member-area">Sign In</button>
+                    <button class="btn btn-primary page-connect dashboard-button" id="dashboard" data-page="dashboard">Dashboard</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="page member-area">
+            <div class="member-container">
+                <div class="member-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6 member-area">
+                                <div>
+                                    <div class="member-title">
+                                        <h2>Login - Register</h2>
+                                    </div>
+                                    <div class="introduce">
+                                        <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    </div>
+                                    <div class="log-button">
+                                        <button class="btn btn-primary page-member onLogin-button">Login</button>
+                                    </div>
+                                    <div class="reg-button">
+                                        <button class="btn btn-primary page-member onRegister-button">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="register-form">
+                                    <h2><img src="./assets/icon/register.png" alt="Register"> Register</h2>
+                                    <div>
+                                        <form class="form-container" id="form-register">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="fistName">First Name:</label>
+                                                    <input type="text" class="form-control mb-2 mr-sm-2" id="firstName" placeholder="Enter First Name">
+                                                </div>
+                                                <div class="col">
+                                                    <label for="lastName">Last Name:</label>
+                                                    <input type="text" class="form-control mb-2 mr-sm-2" id="lastName" placeholder="Enter Last Name">
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col">
+                                                    <label for="email">Email address</label>
+                                                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                                                    <small id="email" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                </div>
+                                            </div>  
+                                            <div class="row mt-2">
+                                                <div class="col">
+                                                    <label for="username">Username</label>
+                                                    <div class="input-group mb-2">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">@</div>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="username-register" placeholder="Enter username">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col">
+                                                    <div>
+                                                        <label for="password">Password</label>
+                                                        <input type="password" id="password-register" class="form-control" placeholder="Enter password">
+                                                        <small id="passwordHelpInline" class="text-muted">
+                                                        Must be 8-20 characters long.
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col">
+                                                    <div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="invalidCheck2" required>
+                                                            <label class="form-check-label" for="invalidCheck2">
+                                                                Agree to terms and conditions
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <input type="button" class="btn btn-primary" value="Register" name="submit-reg" id="submit-register">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="login-form">
+                                    <h2><img src="./assets/icon/login.png" alt="Login"> Login</h2>
+                                    <div>
+                                        <form class="form-container" id="form-login">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="username">Username</label>
+                                                    <div class="input-group mb-2">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">@</div>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="username-login" placeholder="Enter username">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col">
+                                                    <div>
+                                                        <label for="password">Password</label>
+                                                        <input type="password" id="password-login" class="form-control" placeholder="Enter password">
+                                                        <small id="passwordHelpInline" class="text-muted">
+                                                        Must be 8-20 characters long.
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col login-button">
+                                                    <input type="button" class="btn btn-primary" value="Sign In" name="submit-login" id="submit-login">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="other-login">
+                                        <div>
+                                            <p>Or</p>
+                                        </div>
+                                        <div class="google-button">
+                                            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="modal fade" id="form-todo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Task</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Task Name:</label>
+                                <input class="form-control" id="input-new-task" type="text" placeholder="Enter Task Here">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Due Date:</label>
+                                <input class="form-control date-form" id="input-task-due-date" type="date" placeholder="Enter ToDo Here" name="setTodaysDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Priority:</label>
+                                <select class="custom-select" id="input-select-priority">
+                                    <option value="low" selected>Low Priority</option>
+                                    <option value="medium">Medium Priority</option>
+                                    <option value="high">High Priority</option>
+                                    <option value="critical">Critical Priority</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-primary" id="new-task" value="New Task">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="page dashboard">
+            <div class="dashboard-options">
+                <div class="dashboard-title">
+                    <h5>Tasks</h5>
+                </div>
+                <div class="dashboard-select">
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="inputSelect" onchange="dashboardMenu(this)">
+                            <option value="task" selected>ToDo List</option>
+                            <option value="project">Project</option>
+                        </select>
+                        <div class="input-group-append">
+                            <label class="input-group-text" for="inputSelect">Options</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="main-dashboard todo-list">
+                <div class="addnew">
+                    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#form-todo" value="New Task" name="submit-login" id="submit-login">
+                </div>
+                <div class="list-todo-empty">
+                    <div>
+                        <h5>You do not have any tasks yet. Add your first Task!!</h5>
+                    </div>
+                    <div>
+                        <img src="./assets/rocket.png" alt="rocket">
+                    </div>
+                </div>
+
+                <div class="limiter table-todo">
+                    <div class="container-table100">
+                        <div class="wrap-table100">
+                            <div class="table100 ver2 m-b-110">
+                                <table data-vertable="ver2">
+                                    <thead>
+                                        <tr class="row100 head">
+                                            <th class="column100 column1" data-column="column1">Tasks Title</th>
+                                            <th class="column100 column2" data-column="column2">Project</th>
+                                            <th class="column100 column3" data-column="column3">Assignees</th>
+                                            <th class="column100 column4" data-column="column4">Due Date</th>
+                                            <th class="column100 column5" data-column="column5">Priority</th>
+                                            <th class="column100 column6" data-column="column6">Status</th>
+                                            <th class="column100 column7" data-column="column7">Options</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="body-todo">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-dashboard project-list">
+                <div class="addnew">
+                    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#form-project" value="New Project" name="submit-login" id="submit-login">
+                </div>
+                <div class="empty-project">
+                    <div>
+                        <h5>You do not have any projects yet. Add your first project!!</h5>
+                    </div>
+                    <div>
+                        <img src="./assets/rocket.png" alt="rocket">
+                    </div>
+                </div>
+
+                <div class="main-dashboard get-project">
+                    <div class="row project-cards">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="modal fade" id="form-project" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Project</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Project Name:</label>
+                                <input class="form-control" id="input-new-project-name" type="text" placeholder="Enter Project Name Here">
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-primary" id="new-project" value="New Task">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="modal fade" id="project-details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content modal-project-details">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="modal fade" id="project-add-member" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Member</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group project-id-add">
+                                
+                            </div>  
+                        
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">New Member:</label>
+                                <input class="form-control" id="input-new-project-member" type="text" placeholder="Enter Member Username Here">
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-primary" id="new-project-member" value="New Member">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="modal fade" id="project-remove-member" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Remove Member</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group project-id-remove">
+                                
+                            </div>  
+                        
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Remove Member:</label>
+                                <input class="form-control" id="input-remove-project-member" type="text" placeholder="Enter Member Username Here">
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-primary" id="remove-project-member" value="Remove Member">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="modal fade" id="edit-task" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group task-id-edit">
+                                
+                            </div>  
+
+                            <div class="form-group task-name-edit">
+                                
+                            </div>
+                        
+                            <div class="form-group task-dueDate-edit">
+                            
+                            </div>
+
+                            <div class="form-group task-priority-edit">
+                            
+                            </div>
+
+                            <div class="form-group task-status-edit">
+                            
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-primary" id="edit-task-details" value="Edit Task">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="modal fade" id="edit-task-project" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add or Edit Task Project</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group task-id-project-edit">
+                            
+                            </div>  
+
+                            <div class="form-group task-project-edit">
+                                <label for="message-text" class="col-form-label">Project:</label>
+                                <select class="custom-select" id="input-select-Project-edit">
+
+                                </select>
+                            </div>  
+                            
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-primary" id="edit-task-project-details" value="Edit Task">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="modal fade" id="edit-task-assignee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add or Edit Task Assigenee</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group task-id-assignee-edit">
+                            
+                            </div>  
+
+                            <div class="form-group task-assignee-edit">
+                                
+                            </div>  
+                            
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-primary" id="edit-task-assignee-details" value="Edit Task">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================== -->
+        <div class="footer">
+            <div>Copyright © 2019 fender13 - All Rights Reserved </div>
+        </div>
+    </div>
+    
+    <!-- bootstrap js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- custom js -->
+    <script src="./js/main.js"></script>
+    <script src="./js/navigation.js"></script>
+    <script src="./js/dashboard.js"></script>
+    <script src="./js/memberArea.js"></script>
+    <script src="./js/project.js"></script>
+</body>
+</html>

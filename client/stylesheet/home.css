@@ -1,0 +1,34 @@
+.home {
+  width: 100%;
+  height: 100vh;
+  background: url(../assets/my-home.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: table;
+}
+
+.main-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.main-title h1 {
+  color: #fff;
+  font-size: 46px;
+  font-weight: 400px;
+}
+
+.main-title p {
+  color: #fff;
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.main-title button {
+  padding: 12px 32px;
+  border: none;
+}
