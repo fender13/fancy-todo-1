@@ -21,6 +21,18 @@ $(document).ready(function() {
         $('.project-list').hide()
       })
       .catch(({ response }) => {
+        $('.page').hide()
+        $('.page.home').show()
+
+        $('.dashboard-button').hide()
+        $('.logout-button').hide()
+        $('.sign-in-button').show()
+        
+        $('.register-form').hide()
+
+        $('.log-button').hide()
+
+        $('.footer').hide()
         console.log(response)
       })
   } else  {

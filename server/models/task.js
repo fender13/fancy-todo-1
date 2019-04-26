@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const ENV = require('dotenv')
 ENV.config()
 
-const db_name = process.env.DB_NAME
-mongoose.connect(`mongodb://localhost/${db_name}`, { useNewUrlParser: true })
+// const db_name = process.env.DB_NAME
+// mongoose.connect(`mongodb://localhost/${db_name}`, { useNewUrlParser: true })
 
 const schema = mongoose.Schema
 

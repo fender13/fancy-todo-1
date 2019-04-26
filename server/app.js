@@ -1,11 +1,15 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const mongoose = require('mongoose')
 
 const ENV = require('dotenv')
 ENV.config()
 
 const port = Number(process.env.PORT)
+
+const db_name = process.env.DB_URL
+mongoose.connect(`${db_name}`, { useNewUrlParser: true })
 
 const index = require('./routes/index')
 const taskRouters = require('./routes/task')

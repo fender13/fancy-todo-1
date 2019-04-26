@@ -23,7 +23,9 @@ class UserController {
       res.status(201).json(data)
     })
     .catch(function(e) {
+      // let error = {}
       if (e.errors.firstName) {
+        // error.firstName=e.errors.firstName.message
         res.status(400).json({
           firstName: e.errors.firstName.message
         })
@@ -57,6 +59,10 @@ class UserController {
     .then(function(user) {
       dataUser = user
       if (!user) {
+        // throw new Error({
+        //   status: 400,
+        //   message: 'EMAIL'
+        // })
         res.status(400).json({
           message: 'EMAIL ATAU PASSWORD ANDA SALAH'
         })
